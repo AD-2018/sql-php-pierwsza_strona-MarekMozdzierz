@@ -1,1 +1,1 @@
-https://MarekMozdzierz.herokuapp.com/
+https://app-marek.herokuapp.com
