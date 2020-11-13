@@ -4,11 +4,11 @@
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <?php
-$servername = "mysql-marek.alwaysdata.net";
-$username = "marek";
-$password = "riko2002";
-$dbname = "marek_1";
- 
+$servername = "mysql-kcz.alwaysdata.net";
+$username = "kcz";
+$password = "zaq1@WSX";
+$dbname = "kcz_20";
+
 $conn = new mysqli($servername, $username, $password, $dbname);
  
 $sql= "SELECT * FROM pracownicy";
