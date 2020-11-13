@@ -1,3 +1,4 @@
+<DOCTYPE!>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css"/>
@@ -6,7 +7,7 @@
 $servername = "mysql-marek.alwaysdata.net";
 $username = "marek";
 $password = "riko2002";
-$dbname = "marek";
+$dbname = "marek_1";
  
 $conn = new mysqli($servername, $username, $password, $dbname);
  
