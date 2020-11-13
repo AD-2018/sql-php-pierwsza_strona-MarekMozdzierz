@@ -11,7 +11,7 @@
     <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">github</a>
     <br>
     <a href="index.php">Pracownicy</a>
-    <a href="funkAgregujaca.php">Funkcje agregujące</a>
+    <a href="funkaAgregujaca.php">Funkcje agregujące</a>
 </body>
 </html>
 <?php
