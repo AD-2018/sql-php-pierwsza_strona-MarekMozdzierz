@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
-    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MichaelMusiol">Github</a>
+    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">Github</a>
     <a href="index.php">Pracownicy</a>
     <a href="Pracownicyorganizacja.php">Organizacja Pracownicy</a>
     <a href="funkcjeAgregujace.php">Funkcje Agregujace</a>
@@ -13,7 +13,7 @@
 
 <?php
 require_once("lib.php");
-echo("<h1>Michael Musiol nr.8</h1>");
+echo("<h1>Marek Moździerz nr.22</h1>");
 
 echo("<h3>Zad.1</h3>");
 $sql = "select * ,year(curdate())-year(data_urodzenia) as wiek from pracownicy";
