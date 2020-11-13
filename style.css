@@ -1,16 +1,42 @@
-table, th, td {
-  border: 1px solid black;
-}
+<style>
 table {
   border-collapse: collapse;
 }
-body {
-  background-color: #3366ff;
-}
+
 th, td {
+  text-align: left;
   padding: 8px;
-  text-align: center;
 }
+
+tr:nth-child(even){background-color: white}
+
+tr:nth-child(odd){background-color: red}
+
 th {
-  background-color: #9999ff; 
+  background-color: black;
+  color: white;
 }
+a {
+background-color: black;
+  box-shadow: 0 5px 0 red;
+  color: white;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  background-color: red;
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+body {
+    margin-top: 25px;
+    height: 100vh;
+}
+</style>
