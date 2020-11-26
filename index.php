@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Marek Moździerz nr.21</h1>
+    <h1>👑Marek Moździerz nr.21</h1>
     <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">•github</a>
     <br>
     <a href="pracownnicyiorganizacja.php">•Organizacja i Pracownicy</a>
