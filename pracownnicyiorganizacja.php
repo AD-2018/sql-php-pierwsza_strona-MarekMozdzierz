@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Mateusz Kuś nr.20</h1>
-    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-Kus0202">github</a>
+    <h1>Mare Moździerz nr.21</h1>
+    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">github</a>
     <br>
-    <a href="index.php">Strona Główna</a>
-    <a href="funkcje_agregujące.php">Funkcje agregujące</a>
-    <a href="data_czas.php">Data i Czas</a>
+    <a href="index.php">strona Główna</a>
+    <a href="funkAgregujaca.php">Funkcje agregujące</a>
+    <a href="DataiCzas.php">Data i Czas</a>
 </body>
 </html>
 <?php
@@ -22,7 +22,7 @@
 
     $result = mysqli_query($conn, $sql);
  echo("<h1> Pracownicy i Organizacja </h1>");
-    echo("<h2>Zadanie 1</h2>");
+    echo("<h2>Zadanie 1.</h2>");
     echo("<h3>".$sql."</h3>");
 
     echo("<table border='1'>");
@@ -40,7 +40,7 @@
 
     $result = mysqli_query($conn, $sql);
 
-    echo("<h1>Zadanie 2</h1>");
+    echo("<h1>Zadanie 2.</h1>");
     echo("<h2>".$sql."</h2>");
 
     echo("<table border='1'>");
@@ -58,7 +58,7 @@
 
     $result = mysqli_query($conn, $sql);
 
-    echo("<h1>Zadanie 3</h1>");
+    echo("<h1>Zadanie 3.</h1>");
     echo("<h2>".$sql."</h2>");
 
     echo("<table border='1'>");
@@ -75,7 +75,7 @@
 
     $result = mysqli_query($conn, $sql);
 
-    echo("<h1>Zadanie 4</h1>");
+    echo("<h1>Zadanie 4.</h1>");
     echo("<h2>".$sql."</h2>");
 
     echo("<table border='1'>");
