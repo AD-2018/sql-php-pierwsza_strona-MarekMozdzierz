@@ -33,7 +33,7 @@
         };
     echo("</table>");
 
-    //---------------------------------------------------------------
+
 
     $sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial AND (dzial = 1 OR dzial = 4)";
 
@@ -51,7 +51,6 @@
         };
     echo("</table>");
 
-    //---------------------------------------------------------------
 
     $sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial AND imie like '%a'";
 
@@ -69,7 +68,7 @@
         };
     echo("</table>");
 
-    //---------------------------------------------------------------
+
 
     $sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial AND imie not like '%a'";
 
