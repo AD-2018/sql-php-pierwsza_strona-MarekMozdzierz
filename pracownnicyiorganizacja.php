@@ -21,7 +21,7 @@
 
     $result = mysqli_query($conn, $sql);
 
-    echo("<h1>Zadanie 1</h1>");
+    echo("<h1>Zadanie 1.</h1>");
     echo("<h2>".$sql."</h2>");
 
     echo("<table border='1'>");
