@@ -8,11 +8,11 @@
 </head>
 <body>
     <h1>Mare Moździerz nr.21</h1>
-    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">github</a>
+    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">•github</a>
     <br>
-    <a href="index.php">strona Główna</a>
-    <a href="funkAgregujaca.php">Funkcje agregujące</a>
-    <a href="DataiCzas.php">Data i Czas</a>
+    <a href="index.php">•strona Główna</a>
+    <a href="funkAgregujaca.php">•Funkcje agregujące</a>
+    <a href="DataiCzas.php">•Data i Czas</a>
 </body>
 </html>
 <?php
