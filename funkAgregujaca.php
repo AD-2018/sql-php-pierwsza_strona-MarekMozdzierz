@@ -5,10 +5,10 @@
 </head>
 <body>
 
-    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">Github</a>
-    <a href="index.php">Pracownicy</a>
-    <a href="pracownnicyiorganizacja.php">Organizacja Pracownicy</a>
-    <a href="funkAgregujaca.php">Funkcje Agregujace</a>
+    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">•Github</a>
+    <a href="index.php">•Pracownicy</a>
+    <a href="pracownnicyiorganizacja.php">•Organizacja Pracownicy</a>
+    <a href="funkAgregujaca.php">•Funkcje Agregujace</a>
     
 <?php
 require_once("connect.php");
