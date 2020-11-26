@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>dodawanie i usuwanie</title>
+</head>
+<body>
+
+<h1>dodawanie pracownika</h1>
+	<form action="insert.php" method="POST">
+	<input type="text" name="imie"></br>
+	<input type="number" name="dzial"></br>
+	<input type="number" name="zarobki"></br>
+	<input type="date" name="data_urodzenia"></br>
+	<input type="submit" value="dodaj Pracownika">
+</form>
+
+
+<h2>usuwanie</h2>
+<form action="delete.php" method="POST">
+   <input type="number" name="id"></br>
+   <input type="submit" value="usuń Pracownika">
+</form>
+
+</body>
+</html>
