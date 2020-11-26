@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Marek Moździerz nr.21</h1>
-    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">github</a>
+    <h1>Mateusz Kuś nr.20</h1>
+    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-Kus0202">github</a>
     <br>
-    <a href="index.php">Pracownicy</a>
-    <a href="funkAgregujaca.php">Funkcje agregujące</a>
+    <a href="index.php">Strona Główna</a>
+    <a href="funkcje_agregujące.php">Funkcje agregujące</a>
+    <a href="data_czas.php">Data i Czas</a>
 </body>
 </html>
 <?php
@@ -20,9 +21,9 @@
     $sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial";
 
     $result = mysqli_query($conn, $sql);
-
-    echo("<h1>Zadanie 1.</h1>");
-    echo("<h2>".$sql."</h2>");
+ echo("<h1> Pracownicy i Organizacja </h1>");
+    echo("<h2>Zadanie 1</h2>");
+    echo("<h3>".$sql."</h3>");
 
     echo("<table border='1'>");
     echo("<th>ID</th><th>Imie</th><th>Zarobki</th><th>Data Urodzenia</th><th>Dzial</th><th>Nazwa dzial</th>");
@@ -52,6 +53,7 @@
     echo("</table>");
 
 
+
     $sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial AND imie like '%a'";
 
     $result = mysqli_query($conn, $sql);
@@ -69,7 +71,6 @@
     echo("</table>");
 
 
-
     $sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial AND imie not like '%a'";
 
     $result = mysqli_query($conn, $sql);
@@ -85,4 +86,3 @@
             echo("</tr>");
         };
     echo("</table>");
-</html>
