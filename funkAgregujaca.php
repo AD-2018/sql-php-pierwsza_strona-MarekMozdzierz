@@ -12,7 +12,7 @@
     
 <?php
 require_once("connect.php");
-echo("<h1>Marek Moździerz nr.21</h1>");
+echo("<h1>👑Marek Moździerz nr.21</h1>");
 
 echo("<h3>Zad.1</h3><br/>");
 $sql = "SELECT sum(zarobki) as suma FROM pracownicy";
