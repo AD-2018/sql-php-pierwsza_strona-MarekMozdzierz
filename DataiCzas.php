@@ -7,13 +7,14 @@
     <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">Github</a>
     <a href="index.php">Pracownicy</a>
     <a href="pracownicyiorganizacja.php">Organizacja Pracownicy</a>
-    <a href="funkaAgregujaca.php">Funkcje Agregujace</a>
+    <a href="funkAgregujaca.php">Funkcje Agregujace</a>
     <a href="DataiCzas.php">Data i Czas</a>
+     <a href="formularz.html">Formularz</a>
     
 
 <?php
 require_once("connect.php");
-echo("<h1>Marek Moździerz</h1>");
+echo("<h1>Marek Moździerz nr.21</h1>");
 
 echo("<h3>Zad.1</h3>");
 $sql = "select * ,year(curdate())-year(data_urodzenia) as wiek from pracownicy";
