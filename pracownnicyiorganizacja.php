@@ -13,6 +13,8 @@
     <a href="index.php">•strona Główna</a>
     <a href="funkAgregujaca.php">•Funkcje agregujące</a>
     <a href="DataiCzas.php">•Data i Czas</a>
+    <a href="formularz.html">•Formularz</a>
+    
 </body>
 </html>
 <?php
