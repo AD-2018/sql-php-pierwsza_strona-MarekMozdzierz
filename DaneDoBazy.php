@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dodaj pracownika</title>
+  <title>Dane Do Bazy</title>
   <link rel="stylesheet" href="style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -14,6 +14,9 @@
     <li><a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">GitHub</a></li> 
     <li><a href="index.php">Strona Główna</a></li>
 		<li><a href="pracownicy_organizacja.php">Pracownicy i Organizacja</a></li>
+                <li><a href="funkcje_agregujące.php">Funkcję Agregujące</a></li>
+                <li><a href="data_czas.php">Data i Czas</a></li>
+                <li><a href="formularz.html">Formularz</a></li>
 </ul>
 </nav>
 	                Dodawanie Pracownika<br>
@@ -27,6 +30,17 @@
 			Data Urodzenia<br>
 			<input type="date" name="data_urodzenia"></br>
 			<input type="submit" value="Dodaj Pracownika"><br>
+	</form>
+<br>
+<br>
+Usuwanie Pracownika<br>
+<form action="delete.php" method="POST">
+	ID<br>
+   <input type="number" name="id_pracownicy"></br>
+   <input type="submit" value="Usuń Pracownika">
+</form>
+<?php
+require "connect.php";
 
 $conn= new mysqli($servername,$username,$password,$dbname);  
      
@@ -42,7 +56,7 @@ echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['dzi
 '<td>
 <form action="delete.php" method="POST">
 <input name="id_pracownicy" value="'.$row['id_pracownicy'].'" hidden>
-<input type="submit" value="Naciśnij to zniknie)">
+<input type="submit" value="Jeśli Klikniesz Pracownik Zniknie :)">
 </form>
 </td>');
   echo("</tr>"); } 
