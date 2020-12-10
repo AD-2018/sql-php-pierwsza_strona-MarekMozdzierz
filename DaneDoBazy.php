@@ -15,7 +15,7 @@
     <li><a href="index.php">Strona Główna</a></li>
 		<li><a href="pracownicy_organizacja.php">Pracownicy i Organizacja</a></li>
                 <li><a href="funkcje_agregujące.php">Funkcję Agregujące</a></li>
-                <li><a href="data_czas.php">Data i Czas</a></li>
+                <li><a href="DataiCzas.php">Data i Czas</a></li>
                 <li><a href="formularz.html">Formularz</a></li>
 </ul>
 </nav>
