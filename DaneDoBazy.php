@@ -56,7 +56,7 @@ echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['dzi
 '<td>
 <form action="delete.php" method="POST">
 <input name="id_pracownicy" value="'.$row['id_pracownicy'].'" hidden>
-<input type="submit" value="Jeśli Klikniesz Pracownik Zniknie :)">
+<input type="submit" value="Naciśnij to zniknie">
 </form>
 </td>');
   echo("</tr>"); } 
