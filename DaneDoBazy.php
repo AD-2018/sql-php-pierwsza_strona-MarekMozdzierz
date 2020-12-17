@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dane Do Bazy</title>
-  <link rel="stylesheet" href="style.css">
- <!DOCTYPE html>
-<html>
-<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="style.css">
@@ -65,3 +60,4 @@ echo('<th>Id</th><th>Imie</th><th>zarobki</th><th>dzial</th><th>Data urodzenia</
 ?>
 </body>
 </html>
+
