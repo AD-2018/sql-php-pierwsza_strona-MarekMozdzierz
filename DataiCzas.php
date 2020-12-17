@@ -1,545 +1,159 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">•Github</a>
-    <a href="index.php">•Pracownicy</a>
-    <a href="pracownnicyiorganizacja.php">•Organizacja Pracownicy</a>
-    <a href="funkAgregujaca.php">•Funkcje Agregujace</a>
-    <a href="index.php">•strona Główna</a>
-    <a href="formularz.html">•Formularz</a>
-    
-
+        <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-spruspatryk">GitHub</a>
+<div class="nav">
+    <a href="index.php">menu</a>
+    <a href="orgPracownicy.php">Organizacja Pracownicy</a>
+    <a href="funkcAgregujace.php">Funkcje Agregujące</a>
+    <a href="DataCzas.php">Data i czas</a>
+</div>
+</body>
+</html>
 <?php
 require_once("connect.php");
-echo("<h1>👑Marek Moździerz nr.21</h1>");
-
-echo("<h3>Zad.1</h3>");
-$sql = "select * ,year(curdate())-year(data_urodzenia) as wiek from pracownicy";
+echo("<br>Zad 1 <br>");
+$sql ="SELECT *,YEAR(curdate())-YEAR(data_urodzenia) AS wiek from pracownicy,organizacja where id_org=dzial"; 
 echo($sql);
 
 $result = mysqli_query($conn, $sql);
 if ( $result) {
-        echo("<li>ok");
+        echo "<li>ok";
     } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
 echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>wiek</th>');
+    echo('<th>Imie</th><th>Wiek</th><th>Nazwa Działu</th>');
 
     while($row=mysqli_fetch_assoc($result)){
         echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['wiek'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-
-    echo("<h3>Zad.2</h3>");
-$sql = "select * ,year(curdate())-year(data_urodzenia) as wiek,dzial,nazwa_dzial from pracownicy, organizacja where id_org=dzial and nazwa_dzial='serwis'";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>dzial</th><th>nazwa_dzial</th><th>wiek</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['dzial'].'</td><td>'.$row['nazwa_dzial'].'</td><td>'.$row['wiek'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
- echo("<h3>Zad.3</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaLat from pracownicy";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma lat</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['SumaLat'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
- echo("<h3>Zad.4</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as Suma from pracownicy,organizacja WHERE id_org=dzial and nazwa_dzial='handel'";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma lat</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['Suma'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
- echo("<h3>Zad.5</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaLatKobiet from pracownicy where imie like '%a'";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma lat kobiet</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['SumaLatKobiet'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
- echo("<h3>Zad.6</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaLatMezczyzn from pracownicy where imie not like '%a'";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma lat mezczyzn</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['SumaLatMezczyzn'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
- echo("<h3>Zad.7</h3>");
-$sql = "select avg(year(curdate()) - year(data_urodzenia)) as SredniaWieku, nazwa_dzial from pracownicy,organizacja where id_org=dzial group by dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Srednia wieku</th><th>nazwa dzial</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['SredniaWieku'].'</td><td>'.$row['nazwa_dzial'].'</td>');
+        echo('<td>'.$row['imie'].'</td>'.'<td>'.$row['wiek'].'</td><td>'.$row['nazwa_dzial'].'</td>');
         echo('</tr>');
     }
 
     echo('</table>');
 
-    
- echo("<h3>Zad.8</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaLat, nazwa_dzial from pracownicy,organizacja where id_org=dzial group by dzial";
+//----------------------
+
+echo("<br>Zad 2<br>");
+$sql ="SELECT *,YEAR(curdate())-YEAR(data_urodzenia) as wiek from pracownicy,organizacja where id_org=dzial and dzial=1";
 echo($sql);
 
 $result = mysqli_query($conn, $sql);
 if ( $result) {
-        echo("<li>ok");
+        echo "<li>ok";
     } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
 echo('<table border="1">');
-    echo('<th>Suma Lat</th><th>nazwa dzial</th>');
+    echo('<th>Imie</th><th>Wiek</th><th>Nazwa Działu</th>');
 
     while($row=mysqli_fetch_assoc($result)){
         echo('<tr>');
-        echo('<td>'.$row['SumaLat'].'</td><td>'.$row['nazwa_dzial'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
- echo("<h3>Zad.9</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as Sumalat, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma lat</th><th>nazwa dzial</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['Sumalat'].'</td><td>'.$row['nazwa_dzial'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
- echo("<h3>Zad.10</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaLat, nazwa_dzial from pracownicy,organizacja where id_org=dzial group by dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma lat</th><th>nazwa dzial</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['SumaLat'].'</td><td>'.$row['nazwa_dzial'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
- echo("<h3>Zad.11</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja where id_org=dzial group by dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>Suma wieku</th><th>nazwa dzial</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['SumaWieku'].'</td><td>'.$row['nazwa_dzial'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-  echo("<h3>Zad.12</h3>");
-$sql = "select sum(year(curdate()) - year(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja where id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
- echo("<h3>Zad.13</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    echo("<h2>Formatowanie dat</h2>");
-
-    
- echo("<h3>Zad.1</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-echo("<h3>Zad.2</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-echo("<h3>Zad.3</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.4</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.5</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.6</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.7</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.8</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.9</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
-        echo('</tr>');
-    }
-
-    echo('</table>');
-    
-    
-echo("<h3>Zad.10</h3>");
-$sql = "SELECT SUM(YEAR(CURDATE()) - YEAR(data_urodzenia)) as SumaWieku, nazwa_dzial from pracownicy,organizacja WHERE id_org=dzial GROUP BY dzial";
-echo($sql);
-
-$result = mysqli_query($conn, $sql);
-if ( $result) {
-        echo("<li>ok");
-    } else {
-      echo("Error: ".$sql."<br/><br/>". mysqli_error($conn));
-    }
-
-echo('<table border="1">');
-    echo('<th>id</th><th>imie</th><th>zarobki</th><th>dzial</th><th>data urodzenia</th>');
-
-    while($row=mysqli_fetch_assoc($result)){
-        echo('<tr>');
-        echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['dzial'].'</td><td>'.$row['data_urodzenia'].'</td>');
+        echo('<td>'.$row['imie'].'</td>'.'<td>'.$row['wiek'].'</td><td>'.$row['nazwa_dzial'].'</td>');
         echo('</tr>');
     }
 
     echo('</table>');
 
-        ?>
+//-----------------------
 
-</body>
+echo("<br>Zad 3<br>");
+$sql ="SELECT *,sum(YEAR(CURDATE()) - YEAR(data_urodzenia)) as suma_lat from pracownicy,organizacja where id_org=dzial"; 
+echo($sql);
+
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+echo('<table border="1">');
+    echo('<th>Suma lat wszystkich pracowników</th>');
+
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_lat'].'</td>');
+        echo('</tr>');
+    }
+
+    echo('</table>');
+
+//------------------
+
+echo("<br>Zad 4<br>");
+$sql ="SELECT *,sum(YEAR(CURDATE()) - YEAR(data_urodzenia)) as suma_lat from pracownicy,organizacja where id_org=dzial and dzial=2"; 
+echo($sql);
+
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+echo('<table border="1">');
+    echo('<th>Suma lat dział handel</th>');
+
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_lat'].'</td>');
+        echo('</tr>');
+    }
+
+    echo('</table>');
+
+//--------------------------------------------------
+
+echo("<br>Zad 5<br>");
+$sql ="SELECT *,sum(YEAR(CURDATE()) - YEAR(data_urodzenia)) as suma_lat from pracownicy,organizacja where id_org=dzial and imie like'%a'"; 
+echo($sql);
+
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+echo('<table border="1">');
+    echo('<th>Suma lat kobiet</th>');
+
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_lat'].'</td>');
+        echo('</tr>');
+    }
+
+    echo('</table>');
+
+//------------------------------------------------
+
+echo("<br>Zad 6<br>");
+$sql ="SELECT *,sum(YEAR(CURDATE()) - YEAR(data_urodzenia)) as suma_lat from pracownicy,organizacja where id_org=dzial and imie not like'%a'"; 
+echo($sql);
+
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+echo('<table border="1">');
+    echo('<th>Suma lat kobiet</th>');
+
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_lat'].'</td>');
+        echo('</tr>');
+    }
+
+    echo('</table>');
 </html>
