@@ -3,64 +3,65 @@
 <head>
   <title>Dane Do Bazy</title>
   <link rel="stylesheet" href="style.css">
+ <!DOCTYPE html>
+<html>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="style.css">
   <title>Dane do Bazy</title>
 </head>
 <body>
-<h1>Marek Moździerz nr.21</h1>
-    <nav>
-    <ul>
-    <li><a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">GitHub</a></li> 
-    <li><a href="index.php">Strona Główna</a></li>
-		<li><a href="pracownicy_organizacja.php">Pracownicy i Organizacja</a></li>
-                <li><a href="funkcje_agregujące.php">Funkcję Agregujące</a></li>
-                <li><a href="DataiCzas.php">Data i Czas</a></li>
-                <li><a href="formularz.html">Formularz</a></li>
-</ul>
-</nav>
-	                Dodawanie Pracownika<br>
-	                <form action="insert.php" method="POST">
-			Imię<br>
-			<input type="text" name="imie"><br>
-			Dział<br>
-			<input type="number" name="dzial"></br>
-			Zarobki<br>
-			<input type="number" name="zarobki"></br>
-			Data Urodzenia<br>
-			<input type="date" name="data_urodzenia"></br>
-			<input type="submit" value="Dodaj Pracownika"><br>
-	</form>
-<br>
-<br>
-Usuwanie Pracownika<br>
-<form action="delete.php" method="POST">
-	ID<br>
-   <input type="number" name="id_pracownicy"></br>
-   <input type="submit" value="Usuń Pracownika">
+	<h3>Dodawanie pracownika</h3>
+   <form action="insert.php" method="POST">
+    <b>Imie:</b><input type="text" name="imie"><br>
+    <b>Dział:</b><input type="number" name="dzial"></br>
+    <b>Zarobki:</b><input type="number" name="zarobki"></br>
+    <b>Data Urodzenia:</b><input type="date" name="data_urodzenia"></br>
+    <input type="submit" value="DODAJ">
 </form>
-<?php
-require "connect.php";
 
-$conn= new mysqli($servername,$username,$password,$dbname);  
-     
-$sql ="select * from pracownicy"; 
-echo("<h2>Tabela Pracowników:</h2>"); 
-    echo("<li>".$sql);
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>id_pracownicy</th><th>imie</th><th>dzial</th><th>zarobki</th><th>data_urodzenia</th><th>Usuń Pracownika</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){    
-  echo("<tr>");     
-echo('<td>'.$row['id_pracownicy'].'</td><td>'.$row['imie'].'</td><td>'.$row['dzial'].'</td><td>'.$row['zarobki'].'</td><td>'.$row['data_urodzenia'].'</td>'.
-'<td>
+<h3>Usuwanie pracownika</h3>
 <form action="delete.php" method="POST">
-<input name="id_pracownicy" value="'.$row['id_pracownicy'].'" hidden>
-<input type="submit" value="Naciśnij to zniknie">
-</form>
-</td>');
-  echo("</tr>"); } 
-echo('</table>'); 
+   <input type="number" name="id"></br>
+   <input type="submit" value="USUŃ">
+ </form>
+<?php
+require_once("connect.php");
+$sql = "SELECT * FROM pracownicy, organizacja WHERE id_org = dzial";
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+
+    $result = mysqli_query($conn, $sql);
+    if ( $result) {
+         echo "<br>";
+     } else {
+       echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+     }
+
+    echo("<h1>Tabela</h1>");
+
+    echo('<table border="1">');
+echo('<th>Id</th><th>Imie</th><th>zarobki</th><th>dzial</th><th>Data urodzenia</th>');
+
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['id_pracownicy'].'</td>'.'<td>'.$row['imie'].'</td>'.'<td>'.$row['zarobki'].'</td>'.'<td>'.$row['dzial'].'</td>'.'<td>'.$row['data_urodzenia'].'</td>'.
+	     
+	     '<td>
+	    
+	     <form action="delete.php" method="POST">
+  		<input type="number" name="id" value="'.$row['id_pracownicy'].'"></br>
+   		<input type="submit" value="x">
+	</form>
+	     
+	     </td>');
+	    
+        echo('</tr>');
+    }
+  echo('</table>');
 ?>
 </body>
 </html>
