@@ -6,274 +6,359 @@
 <body>
     
     
-  echo("<h1>👑Marek Moździerz nr.21</h1>"); 
-    <nav>
-        <ul>
-<a href="https://github.com/AD-2018/sql-php-pierwsza_strona-MarekMozdzierz">•Github</a>
-    <a href="index.php">•strona Główna</a>
-    <a href="index.php">•Pracownicy</a>
-    <a href="pracownnicyiorganizacja.php">•Organizacja Pracownicy</a>
-    <a href="funkAgregujaca.php">•Funkcje Agregujace</a>
-          </ul>
-    </nav>
-    
+ <!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <a href="https://github.com/AD-2018/sql-php-pierwsza_strona-spruspatryk">GitHub</a>
+<div class="nav">
+    <a href="index.php">menu</a>
+    <a href="pracownnicyiorganizacja.php">Organizacja Pracownicy</a>
+    <a href="funkAgregujaca.php">Funkcje Agregujące</a>
+    <a href="DataiCzas.php">Data i czas</a>
+</div>
+</body>
+</html>
 <?php
-$servername = "mysql-kcz.alwaysdata.net";
-$username = "kcz";
-$password = "zaq1@WSX";
-$dbname = "kcz_20";
-$conn= new mysqli($servername,$username,$password,$dbname);
+require_once("connect.php");
 
-$sql ="select * from pracownicy,organizacja where id_org=dzial";
-echo("<h3>Witam na agregatach</h3>");
-echo("<h4>$sql</h4>");
+echo("<br>Zad. 1 <br>");
+$sql = "SELECT sum(zarobki) as suma_zarobków FROM pracownicy, organizacja where id_org=dzial";
+echo($sql);
+
 $result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
 
-echo('<table border="1" class="tabela"');
-echo ("<tr><th>id_pracownicy</th><th>imie</th><th>dzial</th><th>zarobki</th><th>data_urodzenia</th><th>id_org</th><th>nazwa_dzial</th></tr>");
-while($row=mysqli_fetch_assoc($result)){
-echo("<tr>");
-    echo("<tr>");
-    echo("<td>".$row['id_pracownicy']."</td><td>".$row['imie']."</td><td>".$row['dzial']."</td><td>".$row['zarobki']."</td><td>".$row['data_urodzenia']."</td><td>".$row['id_org']."</td><td>".$row['nazwa_dzial']."</td>");
-    echo("<tr>");
-echo("</tr>");
-}
-echo('</table>');
+echo('<table border="1">');
+    echo('<th>suma zarobków</th>');
 
-$sql ="select sum(zarobki) from pracownicy"; 
-echo("<h3>Zadanie 1</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>sum(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['sum(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-    
-$sql ="select sum(zarobki) from pracownicy where imie like '%a'"; 
-echo("<h3>Zadanie 2</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>sum(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['sum(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-$sql ="select sum(zarobki) from pracownicy where imie not like '%a' and (dzial=2 or dzial=3)"; 
-echo("<h3>Zadanie 3</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>sum(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['sum(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-$sql ="select avg(zarobki) from pracownicy where imie not like '%a'"; 
-echo("<h3>Zadanie 4</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>avg(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['avg(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-$sql ="select avg(zarobki) from pracownicy where (dzial=4)"; 
-echo("<h3>Zadanie 4</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>avg(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['avg(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-$sql ="select avg(zarobki) from pracownicy where imie not like '%a' and (dzial=1 or dzial=2)"; 
-echo("<h3>Zadanie 5</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>avg(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['avg(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-$sql ="select count(imie) from pracownicy"; 
-echo("<h3>Zadanie 6</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>count(imie)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['count(imie)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-$sql ="select count(imie) from pracownicy where imie like '%a' and (dzial=1 or dzial=3)"; 
-echo("<h3>Zadanie 7</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>count(imie)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['count(imie)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-    
-       echo("<h2>Group By</h2>"); 
-    
-$sql ="select nazwa_dzial, sum(zarobki) from pracownicy,organizacja where id_org=dzial group by nazwa_dzial"; 
-echo("<h3>Zadanie 8</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>nazwa_dzial</th><th>sum(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['sum(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-    
-    $sql ="select nazwa_dzial, count(imie) from pracownicy,organizacja where id_org=dzial group by nazwa_dzial"; 
-echo("<h3>Zadanie 9</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>nazwa_dzial</th><th>count(imie)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['count(imie)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-    
-    $sql ="select nazwa_dzial, avg(zarobki) from pracownicy,organizacja where id_org=dzial group by nazwa_dzial"; 
-echo("<h3>Zadanie 10</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>nazwa_dzial</th><th>avg(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['avg(zarobki)']."</td>");    
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-    $sql ="select sum(zarobki), if((imie like '%a'), 'Kobiety','Mężczyźni') as 'plec' from pracownicy group by plec"; 
-echo("<h3>Zadanie 11</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>sum(zarobki)</th><th>plec</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['sum(zarobki)']."</td><td>".$row['plec']."</td>");    
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-        
-    $sql ="select avg(zarobki), if((imie like '%a'), 'Kobiety','Mężczyźni') as 'plec' from pracownicy group by plec"; 
-echo("<h3>Zadanie 12</h3>");
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>avg(zarobki)</th><th>plec</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['avg(zarobki)']."</td><td>".$row['plec']."</td>");    
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-    
-           echo("<h2>Having</h2>"); 
-            
-    $sql ="select nazwa_dzial,sum(zarobki) from pracownicy,organizacja where id_org=dzial group by nazwa_dzial having sum(zarobki)<28"; 
-echo("<h3>Zadanie 13</h3>"); 
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>nazwa_dzial</th><th>sum(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['sum(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-                    
-    $sql ="select nazwa_dzial,avg(zarobki) from pracownicy,organizacja where id_org=dzial group by nazwa_dzial having avg(zarobki)>30"; 
-echo("<h3>Zadanie 14</h3>"); 
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>nazwa_dzial</th><th>avg(zarobki)</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['avg(zarobki)']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
-     
-    $sql ="select count(imie),nazwa_dzial from pracownicy,organizacja where id_org=dzial group by nazwa_dzial having count(imie)>3"; 
-echo("<h3>Zadanie 15</h3>"); 
-echo("<h4>$sql</h4>");
-$result = mysqli_query($conn, $sql);  
-echo('<table border="1" class="tabela"'); 
-echo ("<tr><th>count(imie)</th><th>nazwa_dzial</th></tr>"); 
-while($row=mysqli_fetch_assoc($result)){ 
-  echo("<tr>");     
-  echo("<tr>");     
-  echo("<td>".$row['count(imie)']."</td><td>".$row['nazwa_dzial']."</td>");     
-  echo("<tr>"); 
-  echo("</tr>"); } 
-echo('</table>'); 
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_zarobków'].'</td>');
+        echo('</tr>');
+    }
+   echo('</table>');
+
+ //------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+echo("<br>Zad. 2 <br>");
+$sql = "SELECT sum(zarobki) as suma_zarobków FROM pracownicy, organizacja where id_org=dzial and imie like '%a'";
+echo($sql);
+
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+echo('<table border="1">');
+    echo('<th>suma zarobków</th>');
+
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_zarobków'].'</td>');
+        echo('</tr>');
+    }
+
+    echo('</table>');
+
+ //------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+echo("<br>Zad. 3<br>");
+$sql = "SELECT sum(zarobki) as suma_zarobków FROM pracownicy, organizacja where id_org=dzial and (dzial=2 or dzial=3) and imie not like '%a'";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>suma zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['suma_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+echo("<br>Zad. 4<br>");
+$sql = "SELECT avg(zarobki) as średnia_zarobków FROM pracownicy, organizacja where id_org=dzial and imie not like '%a'";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>średnia zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['średnia_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+echo("<br>Zad 5<br>");
+$sql = "SELECT avg(zarobki) as średnia_zarobków FROM pracownicy, organizacja where id_org=dzial and dzial=4";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>średnia zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['średnia_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+echo("<br>Zad. 6<br>");
+$sql ="SELECT avg(zarobki) as średnia_zarobków from pracownicy where imie not like '%a' and (dzial=1 or dzial=2)"; 
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>średnia zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['średnia_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+echo("<br>Zad. 7<br>");
+$sql ="SELECT count(imie) as ilość_pracowników from pracownicy";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>ilość pracowników</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['ilość_pracowników'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+echo("<h2> Group by </h2>");
+
+echo("<br>Zad. 9<br>");
+$sql = "SELECT nazwa_dzial,sum(zarobki) as suma_zarobków FROM pracownicy, organizacja where id_org=dzial group by dzial";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>Nazwa działu</th><th>suma zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['nazwa_dzial'].'</td><td>'.$row['suma_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+echo("<br>Zad. 10<br>");
+$sql = "SELECT nazwa_dzial,count(imie) as ilość_pracowników FROM pracownicy, organizacja where id_org=dzial group by dzial";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>Nazwa działu</th><th>ilość pracowników</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['nazwa_dzial'].'</td><td>'.$row['ilość_pracowników'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+echo("<br>Zad. 11<br>");
+$sql = "SELECT nazwa_dzial,avg(zarobki) as średnia_zarobków FROM pracownicy, organizacja where id_org=dzial group by dzial";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>Nazwa działu</th><th>średnia zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['nazwa_dzial'].'</td><td>'.$row['średnia_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+echo("<br>Zad. 12<br>");
+$sql = "SELECT if(imie like '%a', 'kobiety', 'mezczyzni') as 'plec', sum(zarobki) from pracownicy,organizacja where dzial=id_org group by plec";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>płeć</th><th>suma zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['plec'].'</td><td>'.$row['sum(zarobki)'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+echo("<br>Zad. 13<br>");
+$sql = "SELECT if(imie like '%a', 'kobiety', 'mezczyzni') as 'plec', avg(zarobki) from pracownicy,organizacja where dzial=id_org group by plec";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>płeć</th><th>średnia zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['plec'].'</td><td>'.$row['avg(zarobki)'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+echo("<h2>Having</h2>");
+
+echo("<br>Zad. 14<br>");
+$sql = "SELECT nazwa_dzial,sum(zarobki) as suma_zarobków FROM pracownicy, organizacja where id_org=dzial group by dzial";
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<li>ok";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1">');
+    echo('<th>Nazwa działu</th><th>suma zarobków</th>');
+    while($row=mysqli_fetch_assoc($result)){
+        echo('<tr>');
+        echo('<td>'.$row['nazwa_dzial'].'</td><td>'.$row['suma_zarobków'].'</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+echo("<br>Zad. 15</br>");
+$sql ="SELECT nazwa_dzial, sum(zarobki) as suma_zarobków from pracownicy,organizacja where dzial=id_org group by nazwa_dzial having Sum(zarobki)<28"; 
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<br>";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1" class="tabela"'); 
+echo ("<tr><th>Nazwa Dzialu</th><th>Suma Zarobkow mniejsza od 28</th></tr>"); 
+while($row=mysqli_fetch_assoc($result)){ 
+  echo("<tr>");         
+  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['suma_zarobków)']."</td>");     
+  echo("</tr>"); } 
+echo('</table>'); 
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+echo("<br>Zad. 16</br>");
+$sql ="SELECT nazwa_dzial, avg(zarobki) as średnia_zarobków from pracownicy,organizacja where dzial=id_org group by nazwa_dzial having avg(zarobki)>30"; 
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<br>";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1" class="tabela"'); 
+echo ("<tr><th>Nazwa Dzialu</th><th>Średnia zarobków mężczyzn większa od 30</th></tr>"); 
+while($row=mysqli_fetch_assoc($result)){ 
+  echo("<tr>");         
+  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['średnia_zarobków']."</td>");     
+  echo("</tr>"); } 
+echo('</table>'); 
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+echo("<br>Zad. 17</br>");
+$sql ="SELECT nazwa_dzial, count(imie) as ilość_pracowników from pracownicy,organizacja where dzial=id_org group by nazwa_dzial having count(imie)>3"; 
+echo($sql);
+$result = mysqli_query($conn, $sql);
+if ( $result) {
+        echo "<br>";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+echo('<table border="1" class="tabela"'); 
+echo ("<tr><th>Nazwa Dzialu</th><th>Ilość pracowników w poszczególnych działach większa od 3 </th></tr>"); 
+while($row=mysqli_fetch_assoc($result)){ 
+  echo("<tr>");         
+  echo("<td>".$row['nazwa_dzial']."</td><td>".$row['ilość_pracowników']."</td>");     
+  echo("</tr>"); } 
+echo('</table>'); 
 
 
 ?>
-
-
-
-</body>
-</html>
