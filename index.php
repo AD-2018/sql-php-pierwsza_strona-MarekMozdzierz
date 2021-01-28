@@ -13,7 +13,8 @@
     <a href="DataiCzas.php">Data i czas</a>
     <a href="formularz.html">Formularz</a>
     <a href="DaneDoBazy.php">Dodawanie pracowników</a>
-    <a href="ksiazki.php">książki</a>
+    <a href="ksiazki.php">książki</a><!DOCTYPE html>
+
 
 </div>
 </body>
@@ -23,7 +24,7 @@
 <?php
 require_once("connect.php");
 
-echo("<br>Zad. 1 <br>");
+echo("<br>Zad 1 <br>");
 $sql = "SELECT * from pracownicy where dzial=2";
 echo($sql);
 
@@ -48,7 +49,7 @@ echo('<table border="1">');
 //---------
 
 
-echo("<br>Zad. 2 <br>");
+echo("<br>Zad 2 <br>");
 $sql = "SELECT * from pracownicy where (dzial=2 or dzial=3)";
 echo($sql);
 
@@ -69,7 +70,7 @@ echo('<table border="1">');
     }
    echo('</table>');
 
-echo("<br>Zad. 3 <br>");
+echo("<br>Zad 3 <br>");
 $sql = "SELECT * from pracownicy where zarobki<30";
 echo($sql);
 
