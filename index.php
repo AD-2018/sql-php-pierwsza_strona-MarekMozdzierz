@@ -9,7 +9,7 @@
     <h1>👑Marek Moździerz nr.21</h1>
     
     <div class = "nav">
-	    <a href="/grid/strona.html">GRID</a>
+	    <li><a href="grid/index.php">Grid</a></li>
 	    <br>
         <a href="index.php">Strona Główna</a> 
          <br>        
