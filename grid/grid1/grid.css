@@ -6,7 +6,7 @@
     background-color: rgb(50, 117, 205);
     height: 100vh;
     display: grid;
-    grid-template-columns: repeat(12, 1fr;
+    grid-template-columns: repeat(12, 1fr);
    
   }
   header {
