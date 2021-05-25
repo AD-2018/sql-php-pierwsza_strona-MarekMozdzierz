@@ -6,11 +6,8 @@
     background-color: rgb(50, 117, 205);
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 2fr 0.5fr;
-    grid-template-areas: 
-    "a b e"
-    "a c e"
-    "a d e";
+    grid-template-columns: repeat(12, 1fr;
+   
   }
   header {
       background-color: blue;
